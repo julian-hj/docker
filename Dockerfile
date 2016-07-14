@@ -260,4 +260,4 @@ RUN set -x \
 ENTRYPOINT ["hack/dind"]
 
 # Upload docker source
-COPY . /go/src/github.com/docker/docker
+#COPY . /go/src/github.com/docker/docker
