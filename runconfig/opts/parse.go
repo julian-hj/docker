@@ -26,6 +26,7 @@ import (
 type ContainerOptions struct {
 	flAttach            opts.ListOpts
 	flVolumes           opts.ListOpts
+	flVolumesOpt        opts.ListOpts
 	flTmpfs             opts.ListOpts
 	flBlkioWeightDevice WeightdeviceOpt
 	flDeviceReadBps     ThrottledeviceOpt
@@ -142,6 +143,7 @@ func AddFlags(flags *pflag.FlagSet) *ContainerOptions {
 		flUlimits:           NewUlimitOpt(nil),
 		flVolumes:           opts.NewListOpts(nil),
 		flVolumesFrom:       opts.NewListOpts(nil),
+		flVolumesOpt:        opts.NewListOpts(nil),
 	}
 
 	// General purpose flags
@@ -201,6 +203,7 @@ func AddFlags(flags *pflag.FlagSet) *ContainerOptions {
 	flags.Var(&copts.flTmpfs, "tmpfs", "Mount a tmpfs directory")
 	flags.Var(&copts.flVolumesFrom, "volumes-from", "Mount volumes from the specified container(s)")
 	flags.VarP(&copts.flVolumes, "volume", "v", "Bind mount a volume")
+	flags.VarP(&copts.flVolumesOpt, "volume-opt", "V", "Optional mount configuration option")
 
 	// Health-checking
 	flags.StringVar(&copts.flHealthCmd, "health-cmd", "", "Command to run to check health")
